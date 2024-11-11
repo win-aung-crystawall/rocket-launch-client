@@ -5,8 +5,10 @@
     </v-col>
     <v-col cols="8">
       <div v-if="scoreHistory" class="py-3">
-        <v-chip v-for="score in scoreHistory.data" class="my-1 mx-1">
-          {{ score.score }}
+        <v-chip v-for="score in scoreHistory.data" class="my-1 mx-1" size="small"
+        :color="getColor(score.score)"
+        >
+          {{ score.score }}x
         </v-chip>
       </div>
       <GameIFrame />
@@ -34,6 +36,16 @@ const fetchData = async () => {
 echo.channel('Scores').listen('NewScoreEvent', (event) => {
     fetchData();
  });
+
+ const getColor = (score) => {
+      if (score >= 0 && score <= 1.99) {
+        return 'teal';
+      } else if (score >= 2 && score <= 5) {
+        return 'purple';
+      } else {
+        return 'pink';
+      }
+    }
 
 onMounted(fetchData); // Call fetchData when the component is mounted
 

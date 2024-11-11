@@ -3,7 +3,7 @@
     <iframe
       :src="websiteUrl"
       width="100%"
-      height="650px"
+      height="600px"
       frameborder="0"
       allowfullscreen
     ></iframe>
